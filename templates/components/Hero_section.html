@@ -1,0 +1,60 @@
+{% load static %}
+<section class="home_section relative h-[100vh] overflow-clip">
+  {% if 'vdo' in hero_img.type  %}
+  <div class="w-[100vw] h-[100vh] -z-1">
+    <video autoplay loop muted poster="{% static 'images/home.jpg' %}" class="w-full absolute bottom-0 top-0 min-w-full min-h-full object-cover object-center">
+      <source  src="{{hero_img.video.url}}" type="video/mp4">
+    </video>
+    <div
+    class="absolute top-0 left-0 w-[100vw] md:h-[100vh] h-[100vh] bg-[#11111d8c] img-overlay z-10"
+    >
+    <div class="absolute inset-0 flex items-center justify-center text-white capitalize lg:text-6xl text-4xl z-10  text-center">
+      {{hero_title}}
+    </div>
+    <h4
+    class="md:text-[200px] text-[100px] items-center justify-center h-full w-full items-center flex font-black opacity-[.75] absolute inset-0 text-center font-sans"
+  >
+    CEC
+  </h4>
+
+  </div>
+  {% else %}
+  <div class="absolute top-0 left-0 right-0 bottom-0 z-[-1] flex flex-col">
+    <img
+      src="{{hero_img.image.url}}"
+      alt="hero-img"
+      class="w-full h-full object-cover object-center"
+    />
+    <h4
+      class="md:text-[200px] text-[200px] items-center justify-center h-full w-full items-center flex font-black opacity-[.75] absolute inset-0 text-center font-sans"
+    >
+      CEC EE
+    </h4>
+  
+  </div>
+  <div
+  class="absolute top-0 left-0 w-[100vw] md:h-[100vh] h-[100vh] bg-[#11111d8c] img-overlay z-10"
+  >
+  <div class="absolute inset-0 flex items-center justify-center text-white capitalize lg:text-6xl text-4xl z-50 font-bold text-center">
+    {{hero_title}}
+  </div>
+  {% endif %}
+</div>
+  <div
+    class="absolute w-[100vw] md:h-[100vh] top-0 flex justify-center items-stretch"
+  >
+    <div class="flex flex-col justify-center items-center text-center">
+      <h1 class="text-4xl md:text-6xl text-white font-bold">{{name}}</h1>
+    </div>
+  </div>
+  <a
+    class="flex w-full justify-center animate-bounce z-[9999] absolute bottom-24"
+    href="#content"
+  >
+    <img
+      src="{%  static  'images/chevrons-down.svg'  %}"
+      alt="chevrons-down"
+      class="z-[9999]"
+    />
+  </a>
+</section>

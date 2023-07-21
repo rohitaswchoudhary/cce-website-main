@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %} {% block title %} CEC In Media {% endblock title %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+<main >
+
+    {% include 'components/Hero_section.html' %}
+
+<section class="px-24" id='content'>
+    <h1 class="text-center w-full text-4xl my-11 font-bold">Media Gallery</h1>
+    <div class="flex flex-wrap lg:gap-16 gap-8 mb-24 items justify-center">
+     {% for item in more_about_cce_data%}
+        <div class="bg-white p-3 shadow-xl w-[330px] border-[0.5px] border-gray-100 rounded-xl group">
+            <div class="rounded-xl h-64 relative w-[300px] overflow-hidden">
+
+                <img  src="{{item.image.url}}" alt="cce_in_media" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200">
+            </div>
+            <div class="space-y-3">
+                <p class="text-sm text-gray-400 mt-2">{{item.date}}</p>
+                <h1 class="font-bold">{{item.title}}</h1>
+                <p class="text-xs text-gray-400 mb-3">{{item.description}}</p>
+                <a href="{{item.link}}" target="_blank" class="text-blue-400 font-bold mt-3">View More<i class="fa-solid fa-arrow-right ml-2 my-auto"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+    
+</main>
+
+
+
+
+{% endblock  %}

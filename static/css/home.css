@@ -1,0 +1,21 @@
+.ents {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f80d0d;
+  position: absolute;
+  top: 0;
+
+
+}
+.home_bg {
+  background: url("../images/home-bg.png") center no-repeat border-box;
+}
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}

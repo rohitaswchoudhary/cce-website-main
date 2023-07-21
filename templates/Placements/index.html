@@ -1,0 +1,193 @@
+{% extends 'base.html' %} {% load static %} {% block title %} Placements {% endblock title %} {% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+{% endblock head %}
+{% block body %}
+{% include 'components/Hero_section.html' %}
+<section class="md:px-24  pt-24 px-6" id="content">
+  <h3 class="text-3xl font-semibold text-center mt-11">About</h3>
+  <p class=" text-sm mt-4 text-justify mb-11">{{about.about}}</p>
+
+  <div class="flex gap-10 lg:flex-row flex-col">
+    <div class="col-span-1 flex justify-center items-center flex-col">
+      <h2 class="font-semibold text-2xl px-4">Placements</h2>
+      <p class="px-4 text-gray-400">Home / Placements / About </p>
+      {% include 'Placements/sidebar.html' %}
+    </div>
+    <div class="col-span-2 gap-10 space-y-16 mt-11 w-full">
+      <div
+        class="bg-[#D9FFA8] flex flex-col lg:flex-row justify-center md:items-center space-y-4 z-[-2] md:space-y-0 p-11 lg:space-x-6 md:items-start rounded-xl relative">
+        <div
+          class="lg:bg-[#8BC53F] p-4 py-6 flex items-center justify-center text-gray rounded-[12px] lg:w-auto lg:h-auto w-full h-full lg:relative absolute inset-0">
+          <span
+            class="material-symbols-outlined text-gray-400 lg:text-white lg:text-[50px] text-[200px] lg:z-0 z-[-1]  opacity-[0.8] lg:opacity-[1]">
+            assistant_navigation
+          </span>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold">Vision</h3>
+          <p>{{vission.data}}</p>
+        </div>
+      </div>
+      <div
+        class="bg-[#D4F2FF] flex flex-col lg:flex-row justify-center md:items-center space-y-4 z-[-2] md:space-y-0 p-11 lg:space-x-6 md:items-start rounded-xl relative">
+        <div
+          class="lg:bg-[#28AAE1] p-4 py-6 flex items-center justify-center text-gray rounded-[12px] lg:w-auto lg:h-auto w-full h-full lg:relative absolute inset-0">
+          <span
+            class="material-symbols-outlined text-gray-400 lg:text-white lg:text-[50px] text-[200px] lg:z-0 z-[-1]  opacity-[0.8] lg:opacity-[1]">
+
+
+            thunderstorm
+
+          </span>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold">Mission</h3>
+          <p>{{mission.data}}</p>
+        </div>
+      </div>
+      <div
+        class="bg-[#D9D9D9] flex flex-col lg:flex-row justify-center md:items-center space-y-4 z-[-2] md:space-y-0 p-11 lg:space-x-6 md:items-start md:justify-start rounded-xl relative">
+        <div
+          class="lg:bg-[#515151] p-4 py-6 flex items-center justify-center text-gray rounded-[12px] lg:w-auto lg:h-auto w-full h-full lg:relative absolute inset-0">
+          <span
+            class="material-symbols-outlined text-gray-400 lg:text-white lg:text-[50px] text-[200px] lg:z-0 z-[-1]  opacity-[0.8] lg:opacity-[1]">
+            casino
+          </span>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold z-[1]">Academic Uniqueness</h3>
+          <ol class="space-y-3">
+            {% for objective in objectives %}
+            <li class="flex"><span class="font-bold mr-2">{{forloop.counter}}.</span>
+              <p>{{objective.data}}</p>
+            </li>
+            {% endfor %}
+
+          </ol>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<section class="my-11 relative ">
+  <h1 class="text-center text-2xl md:text-4xl font-bold pt-[10px] pb-8 overflow-hidden">
+    Testimonials
+  </h1>
+  <div class="swiper3 relative">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      {% for testimonial in testimonials %}
+      <div class="swiper-slide ">
+        <div class="flex flex-col lg:flex-row md:text-left md:px-[150px] justify-center relative">
+          <div class="h-[400px] min-w-[450px] relative flex justify-center items-center">
+            <img class=" w-[380px] absolute z-10 top-0" src="{{testimonial.image.url}}" />
+
+          </div>
+          <div class="px-4">
+            <h1 class="text-center lg:text-left text-4xl py-2 font-semibold">
+              {{testimonial.title}}
+            </h1>
+            <h2 class="text-center lg:text-left text-2xl py-2 font-medium">
+              {{testimonial.sub_title}}
+            </h2>
+
+            <h2 class="text-justify lg:text-left text-lg py-2">
+              {{testimonial.description|safe}}
+            </h2>
+          </div>
+        </div>
+      </div >{% endfor %} </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+
+<section class="md:px-24  py-24 px-6 bg-blue-50">
+  <div class="flex flex-col lg:flex-row lg:justify-evenly items-center">
+    {% include 'Placements/updates.html' %}
+    <div class="swiper max-w-[500px] lg:max-w-6xl lg:w-[60%] ">
+      <h3 class="text-center text-4xl font-semibold">Our Recruiters</h3>
+      <div class="space-y-6">
+
+        {%with recruiters=recruiters2%}
+        {% include 'Placements/logo_coloured_slider.html' %}
+        {%endwith%}
+        {%with left=True%}
+        {% include 'Placements/logo_coloured_slider.html' %}
+        {%endwith%}
+       +
+    
+      </div>
+    </div>
+  </div>
+
+
+</section>
+{% include 'components/gallery.html' %}
+<section class="md:px-24 p-5 px-6 bg-gray-50 " id="contact-us">
+  <div class="flex md:flex-row flex-col text-xl md:items-end md:justify-evenly   md:gap-10 w-full">
+      <div class="space-y-4 ">
+          <h1 class="md:text-6xl text-4xl font-semibold md:my-11 mb-4 ">Contact us</h1>
+          <p class="text-sm md:text-base">For all doubts, queries regarding the department, <br> contact Placement Officer </p>
+          <h3 class="uppercase md:text-2xl text-xl font-bold">Roshan David</h3>
+          <h4 class="md:text-xl flex"><span class="material-symbols-outlined font-bold mr-3">
+              call
+              </span class="text-sm md:text-xl ">+91 98090 55360</h4>
+          <h5 class="text-xl flex"><span class="material-symbols-outlined font-bold mr-3">
+              mail
+              </span class="text-sm md:text-xl ">roshandavid@cce.edu.in</h5>
+      </div>
+      <div class="space-y-4 mt-6 md:mt-0">
+          <p class="text-sm md:text-base">For all doubts, queries regarding the department, <br> contact Training & Placement Officer. </p>
+          <h3 class="uppercase text-xl md:text-2xl font-bold">Hingston Xavier</h3>
+          <h4 class="text-xl flex"><span class="material-symbols-outlined font-bold mr-3">
+              call
+              </span class="text-sm md:text-xl ">+91 95269 49872</h4>
+          <h5 class="text-xl flex"><span class="material-symbols-outlined font-bold mr-3">
+              mail
+              </span class="text-sm md:text-xl ">hingstonxavier@cce.edu.in</h5>
+      </div>
+  </div>
+</section>
+
+
+
+{% endblock body %}
+{% block script %}
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper(".swiper3", {
+    speed: 400,
+    spaceBetween: 100,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    slidesPerView: 1,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+    },
+  });
+
+  
+</script>
+{% endblock script %}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+{% load static %}
+{% block head %} <link rel="stylesheet" href="{%  static  'css/base.css'  %}" /><link rel="stylesheet" href="{%  static  'ticker/dist/css/ticker.min.css'  %}" />
+<style>
+    
+      .slide {
+        height:300px;
+        transform:scale(0.9);
+        
+        display: grid;
+        place-items: center;
+        transition:0.5s;
+        cursor:pointer;
+      }
+      .slide:hover{
+        transform:scale(1)
+      }
+      
+      @media screen and (max-width: 768px) {
+      
+      
+        .slide {
+          height: 200px;
+          margin-left: 4px;
+          margin-right: 6px;
+        }
+      }
+</style>
+{% endblock  %}
+
+{% block body %}
+
+<section class="gallery  min-h-[70vh] w-[100vw] md:p-11 gap-6 my-11" id ="gallery" >
+  <h1 class="text-center text-4xl md:text-5xl font-bold pb-11">Gallery</h1>
+  <div>
+        <div class="slide-track bg-white">
+        {% for item in gallery %}
+        {% if 'img' in item.type %}
+        <img src="{{item.image.url}}" class="slide " alt="happenings-img" >
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+    <div class="w-full flex justify-center mt-11">
+
+      <a href="/gallery" class="bg-[#007FFF] p-2 md:pl-6 md:pr-6 rounded-md font-bold text-white hover:scale-125 duration-500">Explore More</a>
+    </div>
+
+</section>
+{% endblock  %}
+
+
+
+
+{% block script %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+<script src="{%  static  'ticker/dist/js/ticker.min.js'  %}"></script>
+<script>
+    $(".slide-track").ticker({
+    item: 'img',
+    pauseOnHover: true,
+    speed: 60,
+    pauseAt: '',
+    delay: 500
+  
+  });
+</script>
+  
+{% endblock %}      
+      
