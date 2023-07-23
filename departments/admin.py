@@ -14,6 +14,8 @@ admin.site.register(ProfessionalBodies)
 admin.site.register(ProfessionalBodiesTeamMembers)
 admin.site.register(ProfessionalBodiesEvents)
 admin.site.register(SyllabusPDFS)
+admin.site.register(SyllabusEE)
+
 admin.site.register(Handouts)
 admin.site.register(Laboratories)
 admin.site.register(Achivements)

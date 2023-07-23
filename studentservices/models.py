@@ -106,6 +106,7 @@ class Clubs(models.Model):
     def __str__(self):
         return self.name
 
+
 class IICCertificate(models.Model):
     name = models.CharField(max_length=100)
     image = models.FileField(upload_to='iic/certificates')

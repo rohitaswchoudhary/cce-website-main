@@ -8,6 +8,7 @@ urlpatterns = [
     path('associations/<str:slug>', views.Association, name='dep_associations'),
     path('research/<str:department>/<str:slug>', views.research_page, name='dep_research'),
     path('<str:department>/<str:route>', views.Department, name='Department'),
+    path('syllabus_ee', views.syllabus_ee, name='syllabus_ee'),
 ]
 if settings.DEBUG:     
      urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

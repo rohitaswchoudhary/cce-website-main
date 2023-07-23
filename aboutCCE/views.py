@@ -16,12 +16,12 @@ def management_page(request):
     return render(request, 'aboutCEC/management.html',context=context)
 
 def hod_desk_page(request):
-    executive_director = Faculty.objects.filter(role__role="Executive Director").first()
+    hod = Faculty.objects.filter(role__role="HOD_EE").first()
     joint_director_administration = Faculty.objects.filter(role__role="Joint Director Admin").first()
     joint_director_finance = Faculty.objects.filter(role__role="Joint Director Finan").first()
     hero_img = Hero_Image.objects.filter(page="directors_desk").first()
     context = {
-        "executive_director": executive_director,
+        "hod": hod,
         "joint_director_administration": joint_director_administration,
         "joint_director_finance": joint_director_finance,
         'hero_img':hero_img,

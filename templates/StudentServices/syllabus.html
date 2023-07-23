@@ -1,0 +1,84 @@
+{% extends 'base.html' %} {% load static %} {% block title %} SYLLABUS {% endblock title %} {% block head %}
+<link rel="stylesheet" href="../static/css/iqac.css" />
+{% endblock head %} {% block body %}
+<main class="w-[100vw]">
+  {% include 'components/Hero_section.html' %}
+
+  <section class="max-w-screen-2xl mx-auto px-11 mt-11">
+    <div class="w-full text-center">
+      <div class="">
+        <h1 class="text-center font-semibold lg:text-5xl text-4xl mb-6">
+          SEMESTER WISE SYLLABUS
+        </h1>
+        <!-- <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quo!
+        </p> -->
+        
+      </div>
+    </div>
+   
+    
+  </section>
+
+  <section class="max-w-screen-2xl mx-auto px-11">
+    
+    <div class="w-full">
+      {% comment %} medium screen table starts {% endcomment %}
+      <table class="w-full executive-committee-table sticky top-0">
+        <thead class="w-full bg-[#28AAE199] md:table hidden">
+          <tr class="grid grid-cols-3 place-items-center h-[70px]">
+            <th>SYLLABUS</th>
+            <th>DOWNLOAD</th>
+          </tr>
+        </thead>
+
+        <tbody class="md:table hidden w-full">
+          {% for item in Syllb_pdf %}
+          <tr class='grid grid-cols-2 w-full'>
+            <td><a href="{{item.syllb.url}}" target="_blank">{{item.name}}</td>
+            <td><a href="{{item.syllb.url}}" target="_blank">Download</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% comment %} medium screen table ends {% endcomment %} {% comment %}
+      mobile view starts {% endcomment %}
+      <div class="w-full px-11 md:hidden space-y-3">
+        {% for item in formation_notice %}
+        <div
+          class="bg-white p-2 h-auto shadow-md border-gray-50 border-[0.5px]"
+        >
+          <div class="flex justify-between items-center">
+            <h1 class="text-xl font-bold">
+              {{forloop.counter}}. {{item.name}}
+            </h1>
+          </div>
+          <div class="flex justify-between mt-4">
+            <div class="text-start">
+              <p class="text-gray-500">Designation</p>
+              <h1>{{item.designation}}</h1>
+            </div>
+            <div class="text-start">
+              <p class="text-gray-500">Download</p>
+              <h1><a href="{{item.notice.url}}" target="_blank">{{item.name}}</a></h1>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      {% comment %} mobile view for table ends {% endcomment %}
+    </div>
+    <BR></BR>
+    <div
+        class="lg:w-[380px] lg:relative absolute inset-0 w-full flex items-center justify-center -z-1"
+      >
+        <img
+          src="{%  static  'images/iqac/functions.png'  %}"
+          alt="iqac_objecctives"
+          class="lg:opacity-[1] opacity-[0.5]"
+        />
+      </div>
+  </section>
+</main>
+{% endblock %}

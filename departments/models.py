@@ -3,7 +3,7 @@ import uuid
 from website.models import Faculty
 
 # Create your models here.
-DEPARTMENTS = (("CSE","CSE"),("ECE","ECE"),("EEE","EEE"),("ME","ME"),("CE","CE"),("BSH","BSH"),("None","None"))
+DEPARTMENTS = (("EE","EE"),("None","None"))
 class DepHero(models.Model):
     image = models.ImageField(upload_to="DEP_Heros_Images",blank=True)
     video = models.FileField(upload_to="DEP_Heros_Videos",blank=True)
@@ -138,7 +138,14 @@ class SyllabusPDFS(models.Model):
     def __str__(self) -> str:
         return self.title
 
+class SyllabusEE(models.Model):
 
+    syllb = models.FileField(upload_to="SyllabusEE")
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.syllb.name
+    class Meta:
+        verbose_name_plural = "Syllabus EE"
 class Handouts(models.Model):
     course_name = models.CharField(max_length=200)
     course_code = models.IntegerField()

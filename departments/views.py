@@ -11,18 +11,9 @@ from .models import Achivements as DepAchievements
 
 def getDepartment(department):
     match department:
-        case "BSH":
-            return "Basic Science and Humanities"
-        case "CSE":
-            return "Computer Science and Engineering"
-        case "ECE":
-            return "Electronics and Communication Engineering"
-        case "EEE":
-            return "Electrical and Electronics Engineering"
-        case "ME":
-            return "Mechanical Engineering"
-        case "CE":
-            return "Civil Engineering"
+        case "EE":
+            return "Electrical Engineering"
+        
         
 
 class Context:
@@ -193,7 +184,10 @@ def research_page(request,department,slug):
         case other:
             raise Http404("Page Kanumanilla")
  
-
+def syllabus_ee(request,):
+    Syllb_pdf = SyllabusEE.objects.all()
+    hero_img = Hero_Image.objects.filter(page="syllabus").first()
+    return render(request, 'StudentServices/syllabus.html',context={"Syllb_pdf":Syllb_pdf,'hero_img':hero_img,'hero_title':'SYLLABUS ELECTRICAL ENGINEERING'})
     
 def ProfessionalBodie(request,slug):
     context = {

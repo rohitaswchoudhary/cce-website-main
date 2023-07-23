@@ -37,6 +37,9 @@ def clubs_page(request):
 
     return render(request, 'StudentServices/clubs.html',context={"data":data,"hero_img":hero_img,"hero_title":"Clubs"})
 
+
+
+
 def womencell_page(request):
     data = WomenCellCommitee.objects.all()
     hero_img = Hero_Image.objects.all().filter(page="womencell").first
