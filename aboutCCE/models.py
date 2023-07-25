@@ -36,4 +36,4 @@ class MoreAboutCCE(models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = "More About CCE"
+        verbose_name_plural = "More About CEC"

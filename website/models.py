@@ -71,7 +71,7 @@ class Gallery(models.Model):
     type = models.CharField(max_length=200, choices = TYPE, default="img")
     date = models.DateField(default=datetime.date.today)
     event_type = models.ManyToManyField(GalleryEventTypes,default="None")
-    DEPARTMENTS = (("CSE","CSE"),("ECE","ECE"),("EEE","EEE"),("MECH","ME"),("CIVIL","CE"),("BSH","BSH"),("All","All"))
+    DEPARTMENTS = (("EE","EE"),("All","All"))
     department = models.CharField(max_length=200, choices = DEPARTMENTS, default="None")
 
     def __str__(self):
@@ -86,7 +86,7 @@ class Faculty(models.Model):
     role = models.ManyToManyField(Role)
     email = models.EmailField(default="faculty@cce.edu.in")
     image = models.ImageField(upload_to="faculty", default = "faculty.jpeg")
-    DEPARTMENTS = (("CSE","CSE"),("ECE","ECE"),("EEE","EEE"),("ME","ME"),("CE","CE"),("BSH","BSH"),("None","None"),("administrative_staff","Administrative Staff"),("wardens","Wardens "),("supporting_staff","Supporting Staff"),("security_staff","Security Staff"))
+    DEPARTMENTS = (("EE","EE"),("None","None"),("administrative_staff","Administrative Staff"),("wardens","Wardens "),("supporting_staff","Supporting Staff"),("security_staff","Security Staff"))
     department = models.CharField(max_length=200, choices = DEPARTMENTS, default="None")
     profile = models.FileField(upload_to="faculty_profile", default = "faculty_profile.pdf")
     priorities = models.IntegerField(default=10)
@@ -168,38 +168,38 @@ class HomeAnouncement(models.Model):
         return self.title
 
   
-DEPARTMENTS = (("CSE","CSE"),("ECE","ECE"),("EEE","EEE"),("ME","ME"),("CE","CE"),("BSH","BSH"),("None","None"))
+DEPARTMENTS = (("EE","EE"),("None","None"))
 
-class FundedProjects(models.Model):
-    name = models.CharField(max_length=100)
-    principal_investigator = models.CharField(max_length=100)
-    duration =  models.CharField(max_length=100)
-    STATUS = (("ongoing","ONGOING"),("completed","COMPLETED"))
-    status = models.CharField(choices=STATUS,max_length=100)
-    department = models.CharField(max_length=200, choices = DEPARTMENTS, default="None")
-    funding_agency = models.CharField(max_length=100)
-    grand_sanctioned = models.IntegerField()
-    grand_recived = models.IntegerField()
-    publictaion_details = models.FileField(upload_to="research/FundedProjects")
-    def __str__(self):
-        return self.name
+# class FundedProjects(models.Model):
+#     name = models.CharField(max_length=100)
+#     principal_investigator = models.CharField(max_length=100)
+#     duration =  models.CharField(max_length=100)
+#     STATUS = (("ongoing","ONGOING"),("completed","COMPLETED"))
+#     status = models.CharField(choices=STATUS,max_length=100)
+#     department = models.CharField(max_length=200, choices = DEPARTMENTS, default="None")
+#     funding_agency = models.CharField(max_length=100)
+#     grand_sanctioned = models.IntegerField()
+#     grand_recived = models.IntegerField()
+#     publictaion_details = models.FileField(upload_to="research/FundedProjects")
+#     def __str__(self):
+#         return self.name
 
-class AcademicConsultancy(models.Model):
-    name = models.CharField(max_length=100)
-    year = models.IntegerField()
-    name_of_client = models.CharField(max_length=100)
-    department = models.CharField(max_length=200, choices = DEPARTMENTS, default="None")
-    STATUS = (("ongoing","ONGOING"),("completed","COMPLETED"))
-    status = models.CharField(max_length=100,choices=STATUS)
-    amount_recived = models.IntegerField()
-    def __str__(self):
-        return self.name
+# class AcademicConsultancy(models.Model):
+#     name = models.CharField(max_length=100)
+#     year = models.IntegerField()
+#     name_of_client = models.CharField(max_length=100)
+#     department = models.CharField(max_length=200, choices = DEPARTMENTS, default="None")
+#     STATUS = (("ongoing","ONGOING"),("completed","COMPLETED"))
+#     status = models.CharField(max_length=100,choices=STATUS)
+#     amount_recived = models.IntegerField()
+#     def __str__(self):
+#         return self.name
 
-class ResearchGuides(models.Model):
-    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE , default=1)
-    year = models.IntegerField()
-    def __str__(self):
-        return self.faculty.full_name
+# class ResearchGuides(models.Model):
+#     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE , default=1)
+#     year = models.IntegerField()
+#     def __str__(self):
+#         return self.faculty.full_name
 
 class Conference(models.Model):
     name = models.CharField(max_length=100)
@@ -213,16 +213,16 @@ class Conference(models.Model):
         return self.name
 
 
-class AcademicPartnerShip(models.Model):
-    name = models.CharField(max_length=100)
-    year = models.IntegerField()
-    name_of_client = models.CharField(max_length=100)
-    STATUS = (("ongoing","ONGOING"),("completed","COMPLETED"))
-    status = models.CharField(max_length=100,choices=STATUS)
-    department = models.CharField(max_length=200, choices = DEPARTMENTS, default="None")
-    amount  = models.IntegerField()
-    def __str__(self):
-        return self.name
+# class AcademicPartnerShip(models.Model):
+#     name = models.CharField(max_length=100)
+#     year = models.IntegerField()
+#     name_of_client = models.CharField(max_length=100)
+#     STATUS = (("ongoing","ONGOING"),("completed","COMPLETED"))
+#     status = models.CharField(max_length=100,choices=STATUS)
+#     department = models.CharField(max_length=200, choices = DEPARTMENTS, default="None")
+#     amount  = models.IntegerField()
+#     def __str__(self):
+#         return self.name
 
 class FacultyStudentPublications(models.Model):
     title = models.CharField(max_length=500)

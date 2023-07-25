@@ -6,17 +6,17 @@ from administration.models import *
 from website.models import Faculty, Gallery, Hero_Image
 
 # Create your views here.
-def governing_body(request):
-    governing_body_data = GoverningBodyMembers.objects.all()
-    hero_img = Hero_Image.objects.filter(page="governing_body").first()
-    context = {
-        "governing_body_data": governing_body_data,
-        "hero_img": hero_img,
-        'hero_title':'Governing Body',
-        "governing_body_order_file": GoverningBodyOrderFile.objects.all().first(),
+# def professor_staff(request):
+#     professor_staff_data = Professor_Staff().objects.all()
+#     hero_img = Hero_Image.objects.filter(page="Professor_Staff").first()
+#     context = {
+#         "professor_staff_data": professor_staff_data,
+#         "hero_img": hero_img,
+#         'hero_title':'Professor_Staff',
+#         "Professor_Staff_order_file": Professor_StaffOrderFile.objects.all().first(),
 
-    }
-    return render(request, "Administration/governing_body.html", context)
+#     }
+#     return render(request, "Administration/governing_body.html", context)
 
 def iqac_page(request):
     IQAC_executive_commitee = IQACExecutiveCommitee.objects.all()
@@ -88,12 +88,12 @@ def academic_administration_page(request):
 
 
 def grivence_redressal_page(request,slug,page):
-    match slug:
-        case "index":
+
+        if slug== "index":
             hero_img = Hero_Image.objects.filter(page="grivence_redressal").first()
             data = GrivenceCommitee.objects.all()
             return render(request,"Administration/grievance/index.html",context={'hero_title':'Grievance Redressal','hero_img':hero_img,"slug":slug,"data":data})
-        case "staff":
+        elif slug== "staff":
             if page =='login':
                 if request.method == "POST":
                     return HttpResponse(request.POST.get('email'))
@@ -104,11 +104,11 @@ def grivence_redressal_page(request,slug,page):
                     return HttpResponse("gjhdfjgh")
                 else:
                     return render(request,"Administration/grievance/signup.html",context={"slug":slug,"page":page})
-        case "student":
+        elif slug== "student":
             return render(request,"Administration/grievance/login.html",context={"slug":slug,"page":page})
 
-        case "women":
+        elif slug== "women":
             return render(request,"Administration/grievance/login.html",context={"slug":slug,"page":page})
 
-        case "exams":
+        elif slug== "exams":
             return render(request,"Administration/grievance/login.html",context={"slug":slug,"page":page})

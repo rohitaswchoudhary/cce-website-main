@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'placements',
     'storages',
     'tailwind',
-    'cce_web_theme'
+    'cce_web_theme',
+    'django_cleanup.apps.CleanupConfig',
 
 ]
 
@@ -161,10 +162,10 @@ INTERNAL_IPS = [
 
 
 # AWS_S3_URL_PROTOCOL='http:'
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'www.assets.cce.edu.in'
-AWS_S3_CUSTOM_DOMAIN =  "dnbca6q7do6n.cloudfront.net"
+# AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = 'www.assets.cce.edu.in'
+# AWS_S3_CUSTOM_DOMAIN =  "dnbca6q7do6n.cloudfront.net"
 # PUBLIC_MEDIA_LOCATION = 'media'
 # MEDIA_URL = 'http://' + AWS_S3_CUSTOM_DOMAIN + '/' + PUBLIC_MEDIA_LOCATION + '/'
 # DEFAULT_FILE_STORAGE = 'cce.storage_backends.MediaStorage'

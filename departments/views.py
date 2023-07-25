@@ -10,9 +10,8 @@ from .models import Achivements as DepAchievements
 
 
 def getDepartment(department):
-    match department:
-        case "EE":
-            return "Electrical Engineering"
+    if department=="EE":
+        return "Electrical Engineering"
         
         
 
@@ -44,8 +43,8 @@ class Context:
         self.achivements = None
         self.newsletters = None
         self.gallery = Gallery.objects.filter(department=dep)[:10]
-        match route:
-            case "about":
+        if route=="about":
+            
                 self.vission = Vission.objects.filter(department=dep).first()
                 self.objectives = Objectives.objects.filter(department=dep)
                 self.mission = Mission.objects.filter(department=dep)
@@ -54,22 +53,22 @@ class Context:
                 self.psos = PSOS.objects.filter(department=dep)
                 self.faculties = Faculty.objects.filter(department=dep).exclude(role__role='HOD').order_by('priorities')
                 self.HOD = Faculty.objects.filter(department=dep).filter(role__role='HOD').first()
-            case "faculty":
+        elif route== "faculty":
                 self.faculties = Faculty.objects.filter(department=dep).exclude(role__role='HOD').order_by('priorities')
                 self.HOD = Faculty.objects.filter(department=dep).filter(role__role='HOD').first()
-            case "associations":
-                self.associations = Associations.objects.filter(department=dep)
-            case "curriculum_and_syllabus":
+            # case "associations":
+            #     self.associations = Associations.objects.filter(department=dep)
+        elif route== "curriculum_and_syllabus":
                 self.syllabus = SyllabusPDFS.objects.filter(department=dep)
-            case "professionalBodies":
-                self.professional_bodies = ProfessionalBodies.objects.filter(department=dep)
-            case "labs":
+            # case "professionalBodies":
+            #     self.professional_bodies = ProfessionalBodies.objects.filter(department=dep)
+        elif route== "labs":
                 self.labs = Laboratories.objects.filter(department=dep)
-            case "events":
+        elif route== "events":
                 self.events = Events.objects.filter(department=dep).order_by('-date')
-            case "achievements":
+        elif route== "achievements":
                 self.achivements = DepAchievements.objects.filter(department=dep)
-            case "newsletters":
+        elif route== "newsletters":
                 self.newsletters = NewsLetters.objects.filter(department=dep)
     def data(self):
         '''This method returns the context'''
@@ -107,106 +106,108 @@ def home(request):
 
 def Department(request, route, department):
     context = Context(department,route).data()
-    match route:
-            case "about":
-                return render(request, 'Departments/index.html', context)
-            case "faculty":
-                return render(request, 'Departments/Faculty.html', context)
-            case "associations":
-                return render(request, 'Departments/Associations.html', context)
-            case "professionalBodies":
-                return render(request, 'Departments/ProfessionalBodies.html', context)
-            case "labs":
-                return render(request, 'Departments/Laboratories.html', context)
-            case "achievements":
-                return render(request, 'Departments/Achievements.html', context)
-            case "events":
-                return render(request, 'Departments/Events.html', context)
-            case "curriculum_and_syllabus":
-                return render(request, 'Departments/curriculum_and_syllabus.html', context)
-            case "newsletters":
-                return render(request, 'Departments/NewsLetters.html', context) 
-            case "research":
-                return redirect('dep_research',department,'index') 
-            case other:
-                raise Http404("Page Not Found")
+    
+    if route== "about":
+        return render(request, 'Departments/index.html', context)
+    elif route== "faculty":
+        return render(request, 'Departments/Faculty.html', context)
+    # case "associations":
+    #     return render(request, 'Departments/Associations.html', context)
+    # case "professionalBodies":
+    #     return render(request, 'Departments/ProfessionalBodies.html', context)
+    elif route== "labs":
+        return render(request, 'Departments/Laboratories.html', context)
+    elif route== "achievements":
+        return render(request, 'Departments/Achievements.html', context)
+    elif route== "events":
+        return render(request, 'Departments/Events.html', context)
+    elif route== "curriculum_and_syllabus":
+        return render(request, 'Departments/curriculum_and_syllabus.html', context)
+    elif route== "newsletters":
+        return render(request, 'Departments/NewsLetters.html', context) 
+    elif route== "contact":
+        return render(request, 'Departments/Contact.html', context) 
+    # case "research":
+    #     return redirect('dep_research',department,'index') 
+    else:
+        raise Http404("Page Not Found")
 
-def research_page(request,department,slug):
-    hero_image = DepHero.objects.all().filter(department = department).first()
-    context_temp = {'dep':department,'route':'research','slug':slug,'hero_img':hero_image}  
-    match slug:
-        case "index":
-            hero_title = "Research"
-            context = {"hero_title":hero_title,**context_temp} 
-            return render(request, 'Departments/research/index.html',context)
-        case 'consultancy':
-            context = {
+# def research_page(request,department,slug):
+#     hero_image = DepHero.objects.all().filter(department = department).first()
+#     context_temp = {'dep':department,'route':'research','slug':slug,'hero_img':hero_image}  
+#     match slug:
+#         case "index":
+#             hero_title = "Research"
+#             context = {"hero_title":hero_title,**context_temp} 
+#             return render(request, 'Departments/research/index.html',context)
+#         case 'consultancy':
+#             context = {
                 
-                "hero_title":"Academic Consultancy",
+#                 "hero_title":"Academic Consultancy",
 
-                "academic_consultancy":AcademicConsultancy.objects.all().filter(department=department)
-                ,**context_temp
-            }
-            return render(request, 'Departments/research/academic_consultancy.html',context)
-        case 'parternship':
-            context = {
+#                 "academic_consultancy":AcademicConsultancy.objects.all().filter(department=department)
+#                 ,**context_temp
+#             }
+#             return render(request, 'Departments/research/academic_consultancy.html',context)
+#         case 'parternship':
+#             context = {
                 
-                "hero_title":"Academic Partnership",
+#                 "hero_title":"Academic Partnership",
                
-                "academic_partnership":AcademicPartnerShip.objects.all().filter(department=department)
-                ,**context_temp
-            }
-            return render(request, 'Departments/research/academic_partnership.html',context)
-        case 'conference':
-            context = {
-                **context_temp,
-                "hero_title":"Conference & Symposium ",
-                "conferences":Conference.objects.all().filter(department=department)
-            }
-            return render(request, 'Departments/research/conference.html',context)
-        case 'funded_projects':
-            context = {
-                **context_temp,
-                "hero_title":"Funded Projects",
-                "funded_projects":FundedProjects.objects.all().filter(department=department)
-                }
-            hero_title = "Funded Projects"
-            return render(request, 'Departments/research/funded_projects.html',context)
-        case 'publications':
-            publications = FacultyStudentPublications.objects.all().filter(dep=department)
-            context = {**context_temp,'hero_title':"Publications",'publications':publications}
-            return render(request, 'Departments/research/publications.html',context)
-        case 'research_guides':
-            research_guides = ResearchGuides.objects.all().filter(faculty__department=department)
-            context = {**context_temp,'hero_title':"KTU Approved RESEARCH GUIDES","research_guides":research_guides}
+#                 "academic_partnership":AcademicPartnerShip.objects.all().filter(department=department)
+#                 ,**context_temp
+#             }
+#             return render(request, 'Departments/research/academic_partnership.html',context)
+#         case 'conference':
+#             context = {
+#                 **context_temp,
+#                 "hero_title":"Conference & Symposium ",
+#                 "conferences":Conference.objects.all().filter(department=department)
+#             }
+#             return render(request, 'Departments/research/conference.html',context)
+#         case 'funded_projects':
+#             context = {
+#                 **context_temp,
+#                 "hero_title":"Funded Projects",
+#                 "funded_projects":FundedProjects.objects.all().filter(department=department)
+#                 }
+#             hero_title = "Funded Projects"
+#             return render(request, 'Departments/research/funded_projects.html',context)
+#         case 'publications':
+#             publications = FacultyStudentPublications.objects.all().filter(dep=department)
+#             context = {**context_temp,'hero_title':"Publications",'publications':publications}
+#             return render(request, 'Departments/research/publications.html',context)
+#         case 'research_guides':
+#             research_guides = ResearchGuides.objects.all().filter(faculty__department=department)
+#             context = {**context_temp,'hero_title':"KTU Approved RESEARCH GUIDES","research_guides":research_guides}
 
-            return render(request, 'Departments/research/research_guides.html',context)
-        case other:
-            raise Http404("Page Kanumanilla")
+#             return render(request, 'Departments/research/research_guides.html',context)
+#         case other:
+#             raise Http404("Page Kanumanilla")
  
 def syllabus_ee(request,):
     Syllb_pdf = SyllabusEE.objects.all()
     hero_img = Hero_Image.objects.filter(page="syllabus").first()
     return render(request, 'StudentServices/syllabus.html',context={"Syllb_pdf":Syllb_pdf,'hero_img':hero_img,'hero_title':'SYLLABUS ELECTRICAL ENGINEERING'})
     
-def ProfessionalBodie(request,slug):
-    context = {
-        'professional_body': ProfessionalBodies.objects.filter(id=slug).first(),
-        'events':ProfessionalBodiesEvents.objects.filter(ProfessionalBodies_id=slug),
-        'members':ProfessionalBodiesTeamMembers.objects.filter(ProfessionalBodies_id=slug).order_by('priority'),
-        'gallery':Gallery.objects.all()
+# def ProfessionalBodie(request,slug):
+#     context = {
+#         'professional_body': ProfessionalBodies.objects.filter(id=slug).first(),
+#         'events':ProfessionalBodiesEvents.objects.filter(ProfessionalBodies_id=slug),
+#         'members':ProfessionalBodiesTeamMembers.objects.filter(ProfessionalBodies_id=slug).order_by('priority'),
+#         'gallery':Gallery.objects.all()
 
 
-    }
-    return render(request, 'Departments/professsionalbody_showcase.html',context=context)
+#     }
+#     return render(request, 'Departments/professsionalbody_showcase.html',context=context)
 
-def Association(request,slug):
-    context = {
-        'association':Associations.objects.filter(id=slug).first(),
-        'events':AssociationsEvents.objects.filter(assosiation_id=slug),
-        'members':AssociationTeamMembers.objects.filter(assosiation_id=slug).order_by('priority'),
-        'gallery':Gallery.objects.all()
+# def Association(request,slug):
+#     context = {
+#         'association':Associations.objects.filter(id=slug).first(),
+#         'events':AssociationsEvents.objects.filter(assosiation_id=slug),
+#         'members':AssociationTeamMembers.objects.filter(assosiation_id=slug).order_by('priority'),
+#         'gallery':Gallery.objects.all()
 
-    }
-    return render(request, 'Departments/association_showcase.html',context)
+#     }
+#     return render(request, 'Departments/association_showcase.html',context)
     

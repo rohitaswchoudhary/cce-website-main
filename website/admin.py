@@ -17,15 +17,15 @@ admin.site.register(Hero_Image)
 admin.site.register(Facilities)
 admin.site.register(Achivements)
 admin.site.register(HomeAnouncement)
-admin.site.register(FundedProjects)
-admin.site.register(AcademicConsultancy)
-admin.site.register(ResearchGuides)
+# admin.site.register(FundedProjects)
+# admin.site.register(AcademicConsultancy)
+# admin.site.register(ResearchGuides)
 admin.site.register(Conference)
-admin.site.register(AcademicPartnerShip)
+# admin.site.register(AcademicPartnerShip)
 admin.site.register(FacultyStudentPublications)
 
 
 
 
 
-admin.site.site_header = 'CCE Web Administration'
+admin.site.site_header = 'CEC Web Administration'

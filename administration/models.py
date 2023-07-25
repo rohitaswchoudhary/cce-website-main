@@ -3,7 +3,7 @@ from django.db import models
 from website.models import Faculty
 
 # Create your models here.
-class GoverningBodyMembers(models.Model):
+class Professor_Staff(models.Model):
     name = models.CharField(max_length=100)
     designation = models.CharField(max_length=100)
     role = models.CharField(max_length=100)
@@ -11,11 +11,11 @@ class GoverningBodyMembers(models.Model):
         return self.name
     
     class Meta:
-        verbose_name_plural = "Governing Body"
+        verbose_name_plural = "Professor_Staff"
 
-class GoverningBodyOrderFile(models.Model):
+class Professor_StaffOrderFile(models.Model):
     name = models.CharField(max_length=100)
-    file = models.FileField(upload_to="GoverningBodyOrderFile")
+    file = models.FileField(upload_to="Professor_StaffOrderFile")
     
 
     class Meta:
@@ -77,7 +77,7 @@ class AntiRaggingCommittee(models.Model):
     name = models.CharField(max_length=100)
     designation = models.CharField(max_length=100)
     role = models.CharField(max_length=100)
-    email = models.EmailField()
+    phone = models.CharField(max_length=200, blank=True)
     def __str__(self):
         return self.name
     class Meta:
