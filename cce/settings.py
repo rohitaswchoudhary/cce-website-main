@@ -97,10 +97,21 @@ WSGI_APPLICATION = 'cce.wsgi.application'
 #         'PORT': os.getenv('DB_PORT')
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'URL': 'postgresql://postgres:gaMvdVs5tVDWOwsquns4@containers-us-west-106.railway.app:6424/railway',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'gaMvdVs5tVDWOwsquns4',
+        'HOST': 'containers-us-west-106.railway.app',
+        'PORT': 6424,
     }
 }
 
@@ -149,16 +160,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Added by manually
 # custom settings
-if os.getenv('PRODUCTION') != 'True':
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "static"),
-    ]
+# if os.getenv('PRODUCTION') != 'True':
+#     STATICFILES_DIRS = [
+#         os.path.join(BASE_DIR, "static"),
+#     ]
 
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+# else:
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# INTERNAL_IPS = [
+#     "127.0.0.1",
+# ]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 # AWS_S3_URL_PROTOCOL='http:'

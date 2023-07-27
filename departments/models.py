@@ -45,8 +45,8 @@ class Vission(models.Model):
     department = models.CharField(max_length=200, choices = DEPARTMENTS, default="None")
     vission = models.CharField(max_length=300)
     class Meta:
-        verbose_name = ("Vission")
-        verbose_name_plural = (" Vission")
+        verbose_name = ("Vision")
+        verbose_name_plural = ("Vision")
 
     def __str__(self):
         return self.department + " ( " + self.vission[:50] + " )"
