@@ -214,7 +214,7 @@ JAZZMIN_SETTINGS = {
     "site_logo_small": "favicons/EE.png",
 
     "site_favicon": "favicons/EE.png",
-     "login_logo": "favicons/android-chrome-192x192.png",
+     "login_logo": "favicons/EE.png",
 
 
     # # CSS classes that are applied to the logo above
