@@ -108,6 +108,17 @@ DATABASES = {
 }
 
 # DATABASES = {
+#         'default': {
+#             'ENGINE': 'djongo',
+#             'NAME': 'rohitaswdb',
+#             'ENFORCE_SCHEMA': False,
+#             'CLIENT': {
+#                 'host': "mongodb+srv://rohitaswdb:<password>@cluster0.kryaujs.mongodb.net/?retryWrites=true&w=majority"
+#             }  
+#         }
+# }
+
+# DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'URL': 'postgresql://postgres:gaMvdVs5tVDWOwsquns4@containers-us-west-106.railway.app:6424/railway',
