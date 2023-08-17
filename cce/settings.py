@@ -100,12 +100,12 @@ WSGI_APPLICATION = 'cce.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # DATABASES = {
 #         'default': {
@@ -118,17 +118,17 @@ DATABASES = {
 #         }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'URL': 'postgresql://postgres:gaMvdVs5tVDWOwsquns4@containers-us-west-106.railway.app:6424/railway',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'gaMvdVs5tVDWOwsquns4',
-#         'HOST': 'containers-us-west-106.railway.app',
-#         'PORT': 6424,
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'URL': 'postgresql://postgres:gaMvdVs5tVDWOwsquns4@containers-us-west-106.railway.app:6424/railway',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'gaMvdVs5tVDWOwsquns4',
+        'HOST': 'containers-us-west-106.railway.app',
+        'PORT': 6424,
+    }
+}
 
 
 # Password validation
