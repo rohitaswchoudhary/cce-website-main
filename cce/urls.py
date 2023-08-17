@@ -4,6 +4,8 @@ from django.urls import path, include
 from django.conf import settings 
 from django.conf.urls.static import static 
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
@@ -18,6 +20,9 @@ urlpatterns = [
 handler500 = "website.views.server_error_page"
 handler404 = "website.views.not_found_error_page"
 
-if settings.DEBUG:     
-     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:     
+#      urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# add at the last
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
